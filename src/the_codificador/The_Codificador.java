@@ -85,8 +85,7 @@ public class The_Codificador {
         return true;
     }
     
-    public static double expRapida(double num,double b,double n)
-  {
+    public static double expRapida(double num,double b,double n){
     double z, x, resul;
     z = b;
     x = num;
