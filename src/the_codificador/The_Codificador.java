@@ -29,11 +29,12 @@ public class The_Codificador {
         }else{
             salida="false";
         }
-         System.out.println(salida);
+         //System.out.println(salida);
+         millerRobin(23);
         
     }
     
-    public void generadorUniforme(){
+    public void genUniforme(){
         int dato=0;
         
         for (int i = 0; i < arreglo.length; i++) {
@@ -45,26 +46,49 @@ public class The_Codificador {
     }
     
     
-     public static boolean primoFermat(int n, int t)
-  {
+    public static void millerRobin(int n){
+        boolean found = false;
+        int valor=0;
+        int s=1;
+        int t=0;
+        
+        while(!found){
+            
+            valor = ((int) Math.pow(2, s))* t + 1;
+            if(valor == n){
+                found=true;
+                System.out.println("ttt: "+t);
+                break;
+            }
+            t++;
+            System.out.println("tt: "+t);
+        }
+        System.out.println("t: "+t);
+    }
+    
+    
+    public static boolean primoFermat(int n, int t){
     int a,b;
-    boolean primo = true;
-    int i = 1;
-    // bucle principal. t vueltas(primo && (i<t))
+    boolean primo = false;
+    int i = 0;
+    // bucle principal.
     while(!primo || (i<t))
     {
       a =(int) Math.floor(2+(Math.random()* (n-2))); // a = aleatorio 2..n-1
+      System.out.println(a);
       b =(int) expRapida(a,n-1,n);        // b = a^n-1 mod n
       i++;
       //primo = false;
+      
       primo = (b==1);       // si b = 1 entonces es primo.
+      System.out.println(primo+" ."+b+" i:"+i);
     }
     return primo;
   }
 
     
     
-    public boolean esPrimo(int dato){
+    public static boolean esPrimo(int dato){
         boolean isPrime=false;
         String salida="";
         
@@ -86,8 +110,7 @@ public class The_Codificador {
         return true;
     }
     
-    public static double expRapida(double num,double b,double n)
-  {
+    public static double expRapida(double num,double b,double n){
     double z, x, resul;
     z = b;
     x = num;
