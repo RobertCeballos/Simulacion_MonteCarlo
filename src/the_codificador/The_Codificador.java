@@ -34,16 +34,16 @@ public class The_Codificador {
         
     }
     
-    public void genUniforme(){
-        int dato=0;
-        
-        for (int i = 0; i < arreglo.length; i++) {
-           dato=(int) (Math.round(Math.random()*(arreglo.length - 1))+1);
-           
-           System.out.println(dato);
-            
-        }
-    }
+//    public void genUniforme(){
+//        int dato=0;
+//        
+//        for (int i = 0; i < arreglo.length; i++) {
+//           dato=(int) (Math.round(Math.random()*(arreglo.length - 1))+1);
+//           
+//           System.out.println(dato);
+//            
+//        }
+//    }
     
     
     public static void millerRobin(int n){
@@ -75,7 +75,6 @@ public class The_Codificador {
     while(!primo || (i<t))
     {
       a =(int) Math.floor(2+(Math.random()* (n-2))); // a = aleatorio 2..n-1
-      System.out.println(a);
       b =(int) expRapida(a,n-1,n);        // b = a^n-1 mod n
       i++;
       //primo = false;
@@ -109,6 +108,7 @@ public class The_Codificador {
        
         return true;
     }
+    
     
     public static double expRapida(double num,double b,double n){
     double z, x, resul;
