@@ -17,6 +17,7 @@ public class MillerRabin {
     static long primo2 = 0;
 
     private static int modular_exponent(long base, long power, long modulus) {
+        
         long result = 1;
         for (int i = 31; i >= 0; i--) {
             result = (result * result) % modulus;
@@ -88,6 +89,11 @@ public class MillerRabin {
         primo1 = gen_Primo();
         primo2 = gen_Primo();
         
+        if(miller_rabin(n)){
+        JOptionPane.showMessageDialog(null,"El numero: "+n+" es un numero Primo"  );
+        }else{
+            JOptionPane.showMessageDialog(null,"El numero: "+n+" es un numero Compuesto"  );
+        }
         JOptionPane.showMessageDialog(null, "Primo 1: "+primo1+"\nPrimo 2: "+primo2);
 
     }
