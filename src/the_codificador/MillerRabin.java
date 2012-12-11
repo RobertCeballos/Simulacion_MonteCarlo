@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  */
 public class MillerRabin {
 
+    
     static long primo1 = 0;
     static long primo2 = 0;
 
