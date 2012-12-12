@@ -9,8 +9,8 @@ package the_codificador;
  * @author Owner
  */
 import java.math.BigInteger;
-import java.util.*;
-import java.io.*;
+import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,13 +18,15 @@ import java.io.*;
  */
 public class RSA {
 
-    int tamPrimo;
+    static int tamPrimo;
     BigInteger n, q, p;
     BigInteger totient;
     BigInteger e, d;
+     String msj="";
 
     /** Constructor de la clase RSA */
     public RSA(int tamPrimo) {
+       
         this.tamPrimo = tamPrimo;
         generaPrimos();             //Genera p y q
         generaClaves();             //Genera e y d
@@ -52,6 +54,7 @@ public class RSA {
         d = e.modInverse(totient);
     }
     
+    
     /**
      * Encripta el texto usando la clave pública
      *
@@ -60,11 +63,12 @@ public class RSA {
      */
     public BigInteger[] encripta(String mensaje)
     {
+         
         int i;
         byte[] temp = new byte[1];
         byte[] digitos = mensaje.getBytes();
         BigInteger[] bigdigitos = new BigInteger[digitos.length];
-        
+       
         for(i=0; i<bigdigitos.length;i++){
             temp[0] = digitos[i];
             bigdigitos[i] = new BigInteger(temp);
@@ -105,6 +109,9 @@ public class RSA {
     public BigInteger damen() {return(n);}
     public BigInteger damee() {return(e);}
     public BigInteger damed() {return(d);}
+    
+    
+    
 }
 
 
