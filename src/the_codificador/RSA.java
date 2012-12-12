@@ -40,6 +40,7 @@ public class RSA {
             while(q.compareTo(p)==0);
     }
     
+    
     public void generaClaves()
     {
         // n = p * q
