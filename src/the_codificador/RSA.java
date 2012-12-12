@@ -35,6 +35,7 @@ public class RSA {
     public void generaPrimos()
     {
         p = new BigInteger(tamPrimo, 10, new Random());
+        System.out.println("valor p: "+p);
         do q = new BigInteger(tamPrimo, 10, new Random());
             while(q.compareTo(p)==0);
     }

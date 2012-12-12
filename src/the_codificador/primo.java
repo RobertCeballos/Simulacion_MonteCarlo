@@ -17,8 +17,8 @@ public class primo{
 
 public static void main(String[] args) throws IOException {
         if(args.length != 1) {
-            System.out.println("Sintaxis: java RSA [tamaño de los primos]");
-            System.out.println("por ejemplo: java RSA 512");
+//            System.out.println("Sintaxis: java RSA [tamaño de los primos]");
+//            System.out.println("por ejemplo: java RSA 512");
             args = new String[1];
             args[0]="1024";
         }

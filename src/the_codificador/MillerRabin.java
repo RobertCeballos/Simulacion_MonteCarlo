@@ -82,12 +82,22 @@ public class MillerRabin {
         return primoA;
     }
 
+    
+    public static long gen_Clave(){
+        
+        long n=primo1*primo2;
+        
+        System.out.println("producto"+n);
+        return n;
+    }
+    
     public static void main(String[] args) {
         long n = Long.parseLong(JOptionPane.showInputDialog(null, "Numero"));
         
         System.out.println(miller_rabin(n) ? n + " Es Primo" : n + " Es Compuesto");
         primo1 = gen_Primo();
         primo2 = gen_Primo();
+        gen_Clave();
         
         if(miller_rabin(n)){
         JOptionPane.showMessageDialog(null,"El numero: "+n+" es un numero Primo"  );
