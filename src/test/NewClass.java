@@ -58,6 +58,9 @@ public class NewClass {
     
     public static void main(String []args){
         
+        BigInteger num = new BigInteger("123");
+        long aa = num.byteValue()+4;
+        System.out.println("biginteger: "+ aa);
        datN =(int) 'A';
        System.out.println("codigo ASCII de la letra a: "+datN);
        int p = (int) (Math.random()*20 +1);
