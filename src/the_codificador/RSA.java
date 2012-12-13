@@ -19,9 +19,9 @@ import javax.swing.JOptionPane;
 public class RSA {
 
     static int tamPrimo;
-    BigInteger n, q, p;
-    BigInteger totient;
-    BigInteger e, d;
+    BigInteger z, q, p;
+    BigInteger f;
+    BigInteger n, d;
      String msj="";
 
     /** Constructor de la clase RSA */
@@ -29,31 +29,105 @@ public class RSA {
        
         this.tamPrimo = tamPrimo;
         generaPrimos();             //Genera p y q
-        generaClaves();             //Genera e y d
+        generaClaves();             //Genera n y d
     }
     
     public void generaPrimos()
     {
-        p = new BigInteger(tamPrimo, 10, new Random());
+        p = new BigInteger("5268647");
         System.out.println("valor p: "+p);
-        do q = new BigInteger(tamPrimo, 10, new Random());
-            while(q.compareTo(p)==0);
+        q = new BigInteger("7762589");
+        System.out.println("valor q: "+q);
+            
+//        p = new BigInteger(tamPrimo, 10, new Random());
+//        System.out.println("valor p: "+p);
+//        do q = new BigInteger(tamPrimo, 10, new Random());
+//            while(q.compareTo(p)==0);
     }
     
     
     public void generaClaves()
     {
         // n = p * q
-        n = p.multiply(q);
+        z = p.multiply(q);
+        System.out.println("valor z: "+z);
         // toltient = (p-1)*(q-1)
-        totient = p.subtract(BigInteger.valueOf(1));
-        totient = totient.multiply(q.subtract(BigInteger.valueOf(1)));
-        // Elegimos un e coprimo de y menor que n
-        do e = new BigInteger(2 * tamPrimo, new Random());
-            while((e.compareTo(totient) != -1) ||
-		 (e.gcd(totient).compareTo(BigInteger.valueOf(1)) != 0));
-        // d = e^1 mod totient
-        d = e.modInverse(totient);
+        f = p.subtract(BigInteger.valueOf(1));
+        f = f.multiply(q.subtract(BigInteger.valueOf(1)));
+        System.out.println("valor f: "+f);
+        // Elegimos un n coprimo de y menor que n
+        do n = new BigInteger(String.valueOf(gen_Primo()));
+            while((n.compareTo(f) != -1) ||
+		 (n.gcd(f).compareTo(BigInteger.valueOf(1)) != 0));
+        // d = n^1 mod totient
+        System.out.println("valor n: "+n);
+        d = n.modInverse(f);
+    }
+    
+    public static long gen_Primo() {
+        boolean found = false;
+        long primoA = 0;
+        int c = 1;
+
+        primoA = (long) (Math.random() * 9000000 + 1000000);
+
+        while (!found) {
+            //System.out.println("verificar: " + (primoA + c));
+
+            found = miller_rabin(primoA + c);
+            //System.out.println(found);
+            if (found) {
+                primoA = primoA + c;
+                System.out.println(primoA);
+            }
+
+            c++;
+        }
+        return primoA;
+    }
+    
+    public static boolean miller_rabin(long n) {
+        if (n <= 2) {
+            return false;
+        } else if (miller_rabin_pass(2, n)
+                && (n <= 7 || miller_rabin_pass(7, n))
+                && (n <= 61 || miller_rabin_pass(61, n))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private static boolean miller_rabin_pass(long a, long n) {
+        int d = (int) (n - 1);
+        int s = Integer.numberOfTrailingZeros(d);
+        d >>= s;
+        long valorModulo = modular_exponent(a, d, n);
+        if (valorModulo == 1) {
+            return true;
+        }
+        for (int i = 0; i < s - 1; i++) {
+            if (valorModulo == n - 1) {
+                return true;
+            }
+            valorModulo = modular_exponent(valorModulo, 2, n);
+        }
+        if (valorModulo == n - 1) {
+            return true;
+        }
+        return false;
+    }
+    
+    private static int modular_exponent(long base, long power, long modulus) {
+
+        long result = 1;
+        for (int i = 31; i >= 0; i--) {
+            result = (result * result) % modulus;
+            if ((power & (1 << i)) != 0) {
+                result = (result * base) % modulus;
+            }
+        }
+        return (int) result; // Will not truncate since modulus is an int
     }
     
     
@@ -69,6 +143,7 @@ public class RSA {
         int i;
         byte[] temp = new byte[1];
         byte[] digitos = mensaje.getBytes();
+        System.out.println("size "+digitos.length);
         BigInteger[] bigdigitos = new BigInteger[digitos.length];
        
         for(i=0; i<bigdigitos.length;i++){
@@ -79,7 +154,7 @@ public class RSA {
         BigInteger[] encriptado = new BigInteger[bigdigitos.length];
         
         for(i=0; i<bigdigitos.length; i++)
-            encriptado[i] = bigdigitos[i].modPow(e,n);
+            encriptado[i] = bigdigitos[i].modPow(n,z);
         
         return(encriptado);
     }
@@ -95,7 +170,7 @@ public class RSA {
         BigInteger[] desencriptado = new BigInteger[encriptado.length];
         
         for(int i=0; i<desencriptado.length; i++)
-            desencriptado[i] = encriptado[i].modPow(d,n);
+            desencriptado[i] = encriptado[i].modPow(d,z);
         
         char[] charArray = new char[desencriptado.length];
         
@@ -107,9 +182,9 @@ public class RSA {
     
     public BigInteger damep() {return(p);}
     public BigInteger dameq() {return(q);}
-    public BigInteger dametotient() {return(totient);}
-    public BigInteger damen() {return(n);}
-    public BigInteger damee() {return(e);}
+    public BigInteger dametotient() {return(f);}
+    public BigInteger damen() {return(z);}
+    public BigInteger damee() {return(n);}
     public BigInteger damed() {return(d);}
     
     

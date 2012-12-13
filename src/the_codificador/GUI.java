@@ -4,6 +4,11 @@
  */
 package the_codificador;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+
 /**
  *
  * @author roberacc
@@ -82,7 +87,7 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
                         .addComponent(jLabel3)
-                        .addGap(14, 14, 14)
+                        .addGap(18, 18, 18)
                         .addComponent(prime_2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
@@ -111,10 +116,11 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(prime_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(prime_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(prime_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,7 +154,49 @@ public class GUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
+        if (args.length != 1) {
+
+//          System.out.println("Sintaxis: java RSA [tamaño de los primos]");
+//          System.out.println("por ejemplo: java RSA 512");
+            args    = new String[1];
+            args[0] = "1024";
+        }
+
+        int tamPrimo = Integer.parseInt(args[0]);
+        RSA rsa = new RSA(tamPrimo);
+
+        System.out.println("Tam Clave: [" + tamPrimo + "]n");
+        System.out.println("p: [" + rsa.damep() + "]");
+        System.out.println("q: [" + rsa.dameq() + "]n");
+        System.out.println("Clave publica (n,e)");
+        System.out.println("n: [" + rsa.damen() + "]");
+        System.out.println("e: [" + rsa.damee() + "]n");
+        System.out.println("Clave publica (n,d)");
+        System.out.println("n: [" + rsa.damen() + "]");
+        System.out.println("d: [" + rsa.damed() + "]n");
+        System.out.println("Texto a encriptar: ");
+
+        String       textoPlano   = (new BufferedReader(new InputStreamReader(System.in))).readLine();
+        BigInteger[] textoCifrado = rsa.encripta(textoPlano);
+
+        System.out.println(textoPlano);
+        System.out.println("nTexto encriptado: [");
+
+        for (int i = 0; i < textoCifrado.length; i++) {
+            System.out.print(textoCifrado[i].toString(16).toUpperCase());
+
+            if (i != textoCifrado.length - 1) {
+                System.out.println("");
+            }
+        }
+
+        System.out.println("]n");
+
+        String recuperarTextoPlano = rsa.desencripta(textoCifrado);
+
+        System.out.println("Texto desencritado: [" + recuperarTextoPlano + "]");
+    
         /*
          * Set the Nimbus look and feel
          */
