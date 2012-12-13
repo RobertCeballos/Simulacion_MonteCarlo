@@ -34,9 +34,9 @@ public class RSA {
     
     public void generaPrimos()
     {
-        p = new BigInteger("5268647");
-        System.out.println("valor p: "+p);
-        q = new BigInteger("7762589");
+        p = new BigInteger(String.valueOf(gen_Primo()));
+        //System.out.println("valor p: "+p);
+        q = new BigInteger(String.valueOf(gen_Primo()));
         System.out.println("valor q: "+q);
             
 //        p = new BigInteger(tamPrimo, 10, new Random());
@@ -50,17 +50,17 @@ public class RSA {
     {
         // n = p * q
         z = p.multiply(q);
-        System.out.println("valor z: "+z);
+       
         // toltient = (p-1)*(q-1)
         f = p.subtract(BigInteger.valueOf(1));
         f = f.multiply(q.subtract(BigInteger.valueOf(1)));
-        System.out.println("valor f: "+f);
+       
         // Elegimos un n coprimo de y menor que n
         do n = new BigInteger(String.valueOf(gen_Primo()));
             while((n.compareTo(f) != -1) ||
 		 (n.gcd(f).compareTo(BigInteger.valueOf(1)) != 0));
         // d = n^1 mod totient
-        System.out.println("valor n: "+n);
+       
         d = n.modInverse(f);
     }
     
@@ -78,7 +78,6 @@ public class RSA {
             //System.out.println(found);
             if (found) {
                 primoA = primoA + c;
-                System.out.println(primoA);
             }
 
             c++;
@@ -101,18 +100,23 @@ public class RSA {
     private static boolean miller_rabin_pass(long a, long n) {
         int d = (int) (n - 1);
         int s = Integer.numberOfTrailingZeros(d);
+       
         d >>= s;
+        
         long valorModulo = modular_exponent(a, d, n);
         if (valorModulo == 1) {
+             System.out.println("1");
             return true;
-        }
+        } 
         for (int i = 0; i < s - 1; i++) {
             if (valorModulo == n - 1) {
+                System.out.println("a.n-1");
                 return true;
             }
             valorModulo = modular_exponent(valorModulo, 2, n);
         }
         if (valorModulo == n - 1) {
+            System.out.println("b.n-1");
             return true;
         }
         return false;
@@ -127,7 +131,7 @@ public class RSA {
                 result = (result * base) % modulus;
             }
         }
-        return (int) result; // Will not truncate since modulus is an int
+        return (int) result; 
     }
     
     
@@ -143,7 +147,6 @@ public class RSA {
         int i;
         byte[] temp = new byte[1];
         byte[] digitos = mensaje.getBytes();
-        System.out.println("size "+digitos.length);
         BigInteger[] bigdigitos = new BigInteger[digitos.length];
        
         for(i=0; i<bigdigitos.length;i++){
@@ -154,8 +157,9 @@ public class RSA {
         BigInteger[] encriptado = new BigInteger[bigdigitos.length];
         
         for(i=0; i<bigdigitos.length; i++)
+            //System.out.println("size: "+bigdigitos.length);
             encriptado[i] = bigdigitos[i].modPow(n,z);
-        
+        System.out.println("encrip: "+encriptado[0]);
         return(encriptado);
     }
     

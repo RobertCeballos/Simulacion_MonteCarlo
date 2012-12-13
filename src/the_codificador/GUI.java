@@ -19,9 +19,18 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     MillerRabin objM;
-    
+    BigInteger[] textoCifrado;
+
     public GUI() {
         initComponents();
+
+
+
+//        System.out.println("]n");
+//
+//        String recuperarTextoPlano = rsa.desencripta(textoCifrado);
+//
+//        System.out.println("Texto desencritado: [" + recuperarTextoPlano + "]");
     }
 
     /**
@@ -33,200 +42,282 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         verNum = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        prime_1 = new javax.swing.JTextField();
-        prime_2 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         verificar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         mensaje = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        prime_1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        prime_2 = new javax.swing.JTextField();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textoC = new javax.swing.JTextArea();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textoE = new javax.swing.JTextArea();
+        jPanel8 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        desencriptar = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        msj = new javax.swing.JTextArea();
+        jButton3 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(562, 497));
 
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.add(verNum, java.awt.BorderLayout.CENTER);
+
         jLabel1.setText("Digite el numero a verificar.");
-
-        jButton1.setText("Generar Primos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jLabel2.setText("primo 1°");
-
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jLabel3.setText("primo 2°");
+        jPanel1.add(jLabel1, java.awt.BorderLayout.WEST);
 
         verificar.setText("Verificar");
+        verificar.setPreferredSize(new java.awt.Dimension(100, 40));
         verificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verificarActionPerformed(evt);
             }
         });
+        jPanel1.add(verificar, java.awt.BorderLayout.EAST);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton1)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(prime_1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(prime_2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1)
-                        .addGap(32, 32, 32)
-                        .addComponent(verNum, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(verificar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(120, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel1))
-                    .addComponent(verNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(verificar))
-                .addGap(21, 21, 21)
-                .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+        getContentPane().add(jPanel1, java.awt.BorderLayout.NORTH);
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        mensaje.setPreferredSize(new java.awt.Dimension(0, 50));
+        jPanel2.add(mensaje, java.awt.BorderLayout.NORTH);
+
+        jPanel4.setLayout(new java.awt.BorderLayout());
+
+        jButton1.setText("Generar Primos");
+        jButton1.setPreferredSize(new java.awt.Dimension(119, 20));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1, java.awt.BorderLayout.WEST);
+
+        jPanel3.setPreferredSize(new java.awt.Dimension(430, 170));
+        jPanel3.setLayout(new java.awt.GridLayout(2, 0));
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("primo 1°");
+        jPanel3.add(jLabel2);
+        jPanel3.add(prime_1);
+
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("primo 2°");
+        jPanel3.add(jLabel3);
+        jPanel3.add(prime_2);
+
+        jPanel4.add(jPanel3, java.awt.BorderLayout.EAST);
+
+        jPanel2.add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        jPanel7.setPreferredSize(new java.awt.Dimension(200, 200));
+        jPanel7.setLayout(new java.awt.BorderLayout());
+
+        jPanel5.setLayout(new java.awt.BorderLayout());
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Texto encriptado");
+        jLabel5.setMaximumSize(new java.awt.Dimension(120, 20));
+        jLabel5.setPreferredSize(new java.awt.Dimension(120, 30));
+        jPanel5.add(jLabel5, java.awt.BorderLayout.PAGE_START);
+
+        textoC.setColumns(20);
+        textoC.setRows(5);
+        jScrollPane2.setViewportView(textoC);
+
+        jPanel5.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        jPanel7.add(jPanel5, java.awt.BorderLayout.WEST);
+
+        jPanel6.setLayout(new java.awt.BorderLayout());
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Digite el texto a encriptar");
+        jLabel4.setPreferredSize(new java.awt.Dimension(176, 30));
+        jPanel6.add(jLabel4, java.awt.BorderLayout.PAGE_START);
+
+        textoE.setColumns(20);
+        textoE.setRows(5);
+        jScrollPane1.setViewportView(textoE);
+
+        jPanel6.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jPanel7.add(jPanel6, java.awt.BorderLayout.EAST);
+
+        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        jButton2.setText(">>");
+        jButton2.setPreferredSize(new java.awt.Dimension(130, 40));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jButton2);
+
+        jPanel7.add(jPanel8, java.awt.BorderLayout.CENTER);
+
+        jPanel9.setPreferredSize(new java.awt.Dimension(694, 70));
+
+        msj.setColumns(20);
+        msj.setRows(5);
+        jScrollPane3.setViewportView(msj);
+
+        jButton3.setText(">>");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(prime_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(prime_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addComponent(desencriptar, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(desencriptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        pack();
+        jPanel7.add(jPanel9, java.awt.BorderLayout.SOUTH);
+
+        jPanel2.add(jPanel7, java.awt.BorderLayout.PAGE_END);
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-704)/2, (screenSize.height-408)/2, 704, 408);
     }// </editor-fold>//GEN-END:initComponents
 
     private void verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarActionPerformed
         // TODO add your handling code here:
-        String msj="";
+        String msj = "";
         objM = new MillerRabin();
-        long num =Long.parseLong(verNum.getText());
-        
-        if(objM.miller_rabin(num)){
-            mensaje.setText("El numero "+num+" es un numero Primo");
-        }else{
-             mensaje.setText("El numero "+num+" es un numero Compuesto");
+        long num = Long.parseLong(verNum.getText());
+
+        if (objM.miller_rabin(num)) {
+            mensaje.setText("El numero " + num + " es un numero Primo");
+        } else {
+            mensaje.setText("El numero " + num + " es un numero Compuesto");
         }
-        
+
     }//GEN-LAST:event_verificarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String num1, num2;
-        long num=0;
+        long num = 0;
         objM = new MillerRabin();
-        num1=String.valueOf(objM.gen_Primo());
-        num2=String.valueOf(objM.gen_Primo());
+        num1 = String.valueOf(objM.gen_Primo());
+        num2 = String.valueOf(objM.gen_Primo());
         prime_1.setText(num1);
         prime_2.setText(num2);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String out = "";
+        int tamPrimo = Integer.parseInt("1024");
+        RSA rsa = new RSA(tamPrimo);
+
+
+        String textoPlano = textoC.getText();
+         BigInteger[] textoCifrado= rsa.encripta(textoPlano);
+
+        System.out.println(textoPlano);
+        System.out.println("nTexto encriptado: ");
+
+        for (int i = 0; i < textoCifrado.length; i++) {
+            out += textoCifrado[i].toString();
+            System.out.print(textoCifrado[i].toString());
+            textoE.setText(out);
+        }
+        System.out.println("valorF: "+out.toString());
+        textoE.setText(out);
+        //
+
+        String outt = rsa.desencripta(textoCifrado);
+        System.out.println("out" + outt);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String out1 = desencriptar.getText();
+        //BigInteger[] textoCifrado = BigInteger(out1);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws IOException {
-        if (args.length != 1) {
+    public static void main(String args[]) {
 
-//          System.out.println("Sintaxis: java RSA [tamaño de los primos]");
-//          System.out.println("por ejemplo: java RSA 512");
-            args    = new String[1];
-            args[0] = "1024";
-        }
 
-        int tamPrimo = Integer.parseInt(args[0]);
-        RSA rsa = new RSA(tamPrimo);
-
-        System.out.println("Tam Clave: [" + tamPrimo + "]n");
-        System.out.println("p: [" + rsa.damep() + "]");
-        System.out.println("q: [" + rsa.dameq() + "]n");
-        System.out.println("Clave publica (n,e)");
-        System.out.println("n: [" + rsa.damen() + "]");
-        System.out.println("e: [" + rsa.damee() + "]n");
-        System.out.println("Clave publica (n,d)");
-        System.out.println("n: [" + rsa.damen() + "]");
-        System.out.println("d: [" + rsa.damed() + "]n");
-        System.out.println("Texto a encriptar: ");
-
-        String       textoPlano   = (new BufferedReader(new InputStreamReader(System.in))).readLine();
-        BigInteger[] textoCifrado = rsa.encripta(textoPlano);
-
-        System.out.println(textoPlano);
-        System.out.println("nTexto encriptado: [");
-
-        for (int i = 0; i < textoCifrado.length; i++) {
-            System.out.print(textoCifrado[i].toString(16).toUpperCase());
-
-            if (i != textoCifrado.length - 1) {
-                System.out.println("");
-            }
-        }
-
-        System.out.println("]n");
-
-        String recuperarTextoPlano = rsa.desencripta(textoCifrado);
-
-        System.out.println("Texto desencritado: [" + recuperarTextoPlano + "]");
-    
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex) {
             java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /*
-         * Create and display the form
-         */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -235,13 +326,37 @@ public class GUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField desencriptar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel mensaje;
+    private javax.swing.JTextArea msj;
     private javax.swing.JTextField prime_1;
     private javax.swing.JTextField prime_2;
+    private javax.swing.JTextArea textoC;
+    private javax.swing.JTextArea textoE;
     private javax.swing.JTextField verNum;
     private javax.swing.JButton verificar;
     // End of variables declaration//GEN-END:variables
