@@ -20,8 +20,7 @@ public class Codify {
    * @param t Factor Seguridad
    * @return Booleano indicando si es primo
    */
-  public static boolean primoFermat(int n, int t)
-  {
+  public static boolean primoFermat(int n, int t){
     int a,b;
     boolean primo = true;
     int i = 1;
@@ -43,8 +42,7 @@ public class Codify {
    * @param t Factor Seguridad
    * @return Booleano indicando si es primo
    */
-  public static boolean primoMR(int n, int t)
-  {
+  public static boolean primoMR(int n, int t){
     boolean compuesto = true;
     int m=n-1; int s=0;
     int r,a,b;
@@ -75,8 +73,7 @@ public class Codify {
   /**
    * Halla el maximo comun divisor de dos numeros
    */
-  public static double mcd(double x,double y )
-  {
+  public static double mcd(double x,double y ){
     double a,b;
     a = x;
     b = y;
@@ -99,8 +96,7 @@ public class Codify {
   /**
    * Realiza la operacion: num^b mod n  de forma eficiente
    */
-  public static double expRapida(double num,double b,double n)
-  {
+  public static double expRapida(double num,double b,double n){
     double z, x, resul;
     z = b;
     x = num;
@@ -131,8 +127,7 @@ public class Codify {
    * @param n
    * @return primo^parteEntera(log(n))
    */
-  private static BigInteger primoElevado(BigInteger primo, BigInteger n)
-  {
+  private static BigInteger primoElevado(BigInteger primo, BigInteger n){
     BigInteger acum = new BigInteger("1");
     while (acum.compareTo(n) != 1)
       acum = acum.multiply(primo);
@@ -149,8 +144,7 @@ public class Codify {
    * @param t Intentos del algoritmo
    * @return Factor hallado. Si n es primo devuelve 1
    */
-  public static BigInteger devuelveFactor(BigInteger n,int B,int t)
-  {
+  public static BigInteger devuelveFactor(BigInteger n,int B,int t){
     BigInteger q = new BigInteger("1");
     int i = 0;
     BigInteger primo = new BigInteger("0");
@@ -208,8 +202,7 @@ public class Codify {
    * @param t Intentos del algoritmo
    * @return Cadena de caracteres con la factorizacion
    */
-  public static String factoriza(BigInteger n, int B, int t)
-  {
+  public static String factoriza(BigInteger n, int B, int t){
     BigInteger factor = Codify.devuelveFactor(n,B,t);
     if (factor.compareTo(BigInteger.ONE) == 0)
       return n.toString();
@@ -232,8 +225,7 @@ public class Codify {
    * Establece la semilla del SRL
    * @param sem
    */
-  public static void semilla (int[] sem)
-  {
+  public static void semilla (int[] sem){
     semilla = new int[sem.length];
     for (int i = 0; i< sem.length ; i++)
       semilla[i]  =  sem[i] % 2;
@@ -248,8 +240,7 @@ public class Codify {
    * Establece la secuencia del SRL
    * @param poli
    */
-  public static void polinomio (int[] poli)
-  {
+  public static void polinomio (int[] poli){
     pol = new int[poli.length];
     for (int i = 0; i<poli.length; i++)
       pol[i]  =  poli[i] % 2;
@@ -259,8 +250,7 @@ public class Codify {
    * Genera un bit de la SRL
    * @return
    */
-  public static int generaBit()
-  {
+  public static int generaBit(){
       int acum = 0;
       for (int i = 0; i< pol.length; i++)
       {
@@ -278,8 +268,7 @@ public class Codify {
    * @param cad
    * @return
    */
-  public static int NumeroAleatorio(int[] cad)
-  {
+  public static int NumeroAleatorio(int[] cad){
     int num = 0;
     int potencia = 1;   //2^0
     int bit = 0;
@@ -303,8 +292,7 @@ public class Codify {
    * @return
    * @throws Exception
    */
-  public static int ord(char car) throws Exception
-  {
+  public static int ord(char car) throws Exception{
     int i=0;
     while ((i<alfabeto.length())&&(alfabeto.charAt(i)!=car)) i++;
     if (i==alfabeto.length())
@@ -315,8 +303,7 @@ public class Codify {
   /**
    * Devuelve el caracter con dicho ordinal
    */
-  public static char chr(int num) throws Exception
-  {
+  public static char chr(int num) throws Exception{
     if (num >= alfabeto.length())
         throw new Exception("El caracter: "+num+" no existe");
     return alfabeto.charAt(num);
@@ -332,8 +319,7 @@ public class Codify {
    * @return
    * @throws Exception
    */
-  public static String[] cifradorVernam(String limpio) throws Exception
-  {
+  public static String[] cifradorVernam(String limpio) throws Exception{
     String codificado = "";
     String srl = "";
 
@@ -365,8 +351,7 @@ public class Codify {
   }
 
 
-  public static void main(String[] args)
-  {
+  public static void main(String[] args){
     int p[] = {0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,1};
     int s[] = {1,1,0,0,1,0,1,1,1,0,0,0,1,1,0,0};
     Codify.polinomio(p);
