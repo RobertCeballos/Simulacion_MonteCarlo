@@ -20,6 +20,8 @@ public class GUI extends javax.swing.JFrame {
      */
     MillerRabin objM;
     BigInteger[] textoCifrado;
+    int tamPrimo = Integer.parseInt("1024");
+    RSA rsa = new RSA(tamPrimo);
 
     public GUI() {
         initComponents();
@@ -198,7 +200,7 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(desencriptar, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,12 +275,12 @@ public class GUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String out = "";
-        int tamPrimo = Integer.parseInt("1024");
-        RSA rsa = new RSA(tamPrimo);
+        //int tamPrimo = Integer.parseInt("1024");
+        //rsa = new RSA(tamPrimo);
 
 
         String textoPlano = textoC.getText();
-         BigInteger[] textoCifrado= rsa.encripta(textoPlano);
+        textoCifrado= rsa.encripta(textoPlano);
 
         System.out.println(textoPlano);
         System.out.println("nTexto encriptado: ");
@@ -292,8 +294,7 @@ public class GUI extends javax.swing.JFrame {
         textoE.setText(out);
         //
 
-        String outt = rsa.desencripta(textoCifrado);
-        System.out.println("out" + outt);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -302,8 +303,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String out1 = desencriptar.getText();
-        //BigInteger[] textoCifrado = BigInteger(out1);
+        
+//        String out1 = desencriptar.getText();
+//        BigInteger[] textoCifrado = new BigInteger[tamPrimo](desencriptar.getText());
+        //System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+        String outt = rsa.desencripta(textoCifrado);
+        System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+        msj.setText(outt);
+        //System.out.println("out" + outt);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -78,6 +78,7 @@ public class RSA {
             //System.out.println(found);
             if (found) {
                 primoA = primoA + c;
+                System.out.println("primoA = " + primoA);
             }
 
             c++;
@@ -89,8 +90,8 @@ public class RSA {
         if (n <= 2) {
             return false;
         } else if (miller_rabin_pass(2, n)
-                && (n <= 7 || miller_rabin_pass(7, n))
-                && (n <= 61 || miller_rabin_pass(61, n))) {
+                && (miller_rabin_pass(7, n))
+                && (miller_rabin_pass(61, n))) {
             return true;
         } else {
             return false;
@@ -99,16 +100,16 @@ public class RSA {
     
     private static boolean miller_rabin_pass(long a, long n) {
         int d = (int) (n - 1);
-        int s = Integer.numberOfTrailingZeros(d);
-       
-        d >>= s;
-        
+        //int s = Integer.numberOfTrailingZeros(d);
+        System.out.println("a = " + a +" d = " + d +" n = " + n );
+        //d >>= s;
+        System.out.println("d = " + d);
         long valorModulo = modular_exponent(a, d, n);
         if (valorModulo == 1) {
              System.out.println("1");
             return true;
         } 
-        for (int i = 0; i < s - 1; i++) {
+        for (int i = 0; i < a; i++) {
             if (valorModulo == n - 1) {
                 System.out.println("a.n-1");
                 return true;
