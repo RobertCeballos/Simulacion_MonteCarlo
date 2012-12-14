@@ -22,17 +22,12 @@ public class GUI extends javax.swing.JFrame {
     BigInteger[] textoCifrado;
     int tamPrimo = Integer.parseInt("1024");
     RSA rsa = new RSA(tamPrimo);
+    String out = "";
 
     public GUI() {
         initComponents();
+        decod.setEnabled(false);
 
-
-
-//        System.out.println("]n");
-//
-//        String recuperarTextoPlano = rsa.desencripta(textoCifrado);
-//
-//        System.out.println("Texto desencritado: [" + recuperarTextoPlano + "]");
     }
 
     /**
@@ -68,11 +63,12 @@ public class GUI extends javax.swing.JFrame {
         textoE = new javax.swing.JTextArea();
         jPanel8 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         desencriptar = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         msj = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
+        decod = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -161,6 +157,7 @@ public class GUI extends javax.swing.JFrame {
         jPanel6.add(jLabel4, java.awt.BorderLayout.PAGE_START);
 
         textoE.setColumns(20);
+        textoE.setLineWrap(true);
         textoE.setRows(5);
         jScrollPane1.setViewportView(textoE);
 
@@ -170,13 +167,23 @@ public class GUI extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jButton2.setText(">>");
-        jButton2.setPreferredSize(new java.awt.Dimension(130, 40));
+        jButton2.setPreferredSize(new java.awt.Dimension(80, 40));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         jPanel8.add(jButton2);
+
+        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButton4.setText("<<");
+        jButton4.setPreferredSize(new java.awt.Dimension(80, 40));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jButton4);
 
         jPanel7.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -186,10 +193,10 @@ public class GUI extends javax.swing.JFrame {
         msj.setRows(5);
         jScrollPane3.setViewportView(msj);
 
-        jButton3.setText(">>");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        decod.setText(">>");
+        decod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                decodActionPerformed(evt);
             }
         });
 
@@ -200,8 +207,8 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(desencriptar, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(decod, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -212,11 +219,11 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(desencriptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addContainerGap())
+                    .addComponent(decod))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel7.add(jPanel9, java.awt.BorderLayout.SOUTH);
@@ -244,7 +251,7 @@ public class GUI extends javax.swing.JFrame {
         setJMenuBar(jMenuBar1);
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-704)/2, (screenSize.height-408)/2, 704, 408);
+        setBounds((screenSize.width-704)/2, (screenSize.height-447)/2, 704, 447);
     }// </editor-fold>//GEN-END:initComponents
 
     private void verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarActionPerformed
@@ -273,24 +280,18 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        String out = "";
-        //int tamPrimo = Integer.parseInt("1024");
-        //rsa = new RSA(tamPrimo);
-
-
+      
+        
+       
         String textoPlano = textoC.getText();
         textoCifrado= rsa.encripta(textoPlano);
 
-        System.out.println(textoPlano);
-        System.out.println("nTexto encriptado: ");
-
         for (int i = 0; i < textoCifrado.length; i++) {
             out += textoCifrado[i].toString();
-            System.out.print(textoCifrado[i].toString());
+           
             textoE.setText(out);
         }
-        System.out.println("valorF: "+out.toString());
+       
         textoE.setText(out);
         //
 
@@ -301,24 +302,23 @@ public class GUI extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void decodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decodActionPerformed
         // TODO add your handling code here:
         
-//        String out1 = desencriptar.getText();
-//        BigInteger[] textoCifrado = new BigInteger[tamPrimo](desencriptar.getText());
-        //System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
         String outt = rsa.desencripta(textoCifrado);
-        System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
         msj.setText(outt);
-        //System.out.println("out" + outt);
-    }//GEN-LAST:event_jButton3ActionPerformed
+       
+    }//GEN-LAST:event_decodActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+       
+        desencriptar.setText(out);
+        decod.setEnabled(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     public static void main(String args[]) {
-
-
+        
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ex) {
@@ -333,10 +333,11 @@ public class GUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton decod;
     private javax.swing.JTextField desencriptar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

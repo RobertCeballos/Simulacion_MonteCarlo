@@ -6,7 +6,7 @@ package the_codificador;
 
 /**
  *
- * @author Owner
+ * @author roberacc
  */
 import java.math.BigInteger;
 import java.util.Random;
@@ -26,7 +26,7 @@ public class RSA {
 
     /** Constructor de la clase RSA */
     public RSA(int tamPrimo) {
-       
+    
         this.tamPrimo = tamPrimo;
         generaPrimos();             //Genera p y q
         generaClaves();             //Genera n y d
@@ -35,14 +35,9 @@ public class RSA {
     public void generaPrimos()
     {
         p = new BigInteger(String.valueOf(gen_Primo()));
-        //System.out.println("valor p: "+p);
+      
         q = new BigInteger(String.valueOf(gen_Primo()));
-        System.out.println("valor q: "+q);
-            
-//        p = new BigInteger(tamPrimo, 10, new Random());
-//        System.out.println("valor p: "+p);
-//        do q = new BigInteger(tamPrimo, 10, new Random());
-//            while(q.compareTo(p)==0);
+     
     }
     
     
@@ -51,7 +46,7 @@ public class RSA {
         // n = p * q
         z = p.multiply(q);
        
-        // toltient = (p-1)*(q-1)
+        // f = (p-1)*(q-1)
         f = p.subtract(BigInteger.valueOf(1));
         f = f.multiply(q.subtract(BigInteger.valueOf(1)));
        
@@ -59,8 +54,7 @@ public class RSA {
         do n = new BigInteger(String.valueOf(gen_Primo()));
             while((n.compareTo(f) != -1) ||
 		 (n.gcd(f).compareTo(BigInteger.valueOf(1)) != 0));
-        // d = n^1 mod totient
-       
+        // d = n^1 mod f
         d = n.modInverse(f);
     }
     
@@ -72,13 +66,10 @@ public class RSA {
         primoA = (long) (Math.random() * 9000000 + 1000000);
 
         while (!found) {
-            //System.out.println("verificar: " + (primoA + c));
 
             found = miller_rabin(primoA + c);
-            //System.out.println(found);
             if (found) {
                 primoA = primoA + c;
-                System.out.println("primoA = " + primoA);
             }
 
             c++;
@@ -100,24 +91,18 @@ public class RSA {
     
     private static boolean miller_rabin_pass(long a, long n) {
         int d = (int) (n - 1);
-        //int s = Integer.numberOfTrailingZeros(d);
-        System.out.println("a = " + a +" d = " + d +" n = " + n );
-        //d >>= s;
         System.out.println("d = " + d);
         long valorModulo = modular_exponent(a, d, n);
         if (valorModulo == 1) {
-             System.out.println("1");
             return true;
         } 
         for (int i = 0; i < a; i++) {
             if (valorModulo == n - 1) {
-                System.out.println("a.n-1");
                 return true;
             }
             valorModulo = modular_exponent(valorModulo, 2, n);
         }
         if (valorModulo == n - 1) {
-            System.out.println("b.n-1");
             return true;
         }
         return false;
@@ -158,19 +143,10 @@ public class RSA {
         BigInteger[] encriptado = new BigInteger[bigdigitos.length];
         
         for(i=0; i<bigdigitos.length; i++)
-            //System.out.println("size: "+bigdigitos.length);
             encriptado[i] = bigdigitos[i].modPow(n,z);
-        System.out.println("encrip: "+encriptado[0]);
         return(encriptado);
     }
-    
-    /**
-     * Desencripta el texto cifrado usando la clave privada
-     *
-     * @param   encriptado       Array de objetos BigInteger que contiene el texto cifrado
-     *                           que será desencriptado
-     * @return  The decrypted plaintext
-     */
+  
     public String desencripta(BigInteger[] encriptado) {
         BigInteger[] desencriptado = new BigInteger[encriptado.length];
         
@@ -185,12 +161,12 @@ public class RSA {
         return(new String(charArray));
     }
     
-    public BigInteger damep() {return(p);}
-    public BigInteger dameq() {return(q);}
-    public BigInteger dametotient() {return(f);}
-    public BigInteger damen() {return(z);}
-    public BigInteger damee() {return(n);}
-    public BigInteger damed() {return(d);}
+    public BigInteger getP() {return(p);}
+    public BigInteger getQ() {return(q);}
+    public BigInteger getF() {return(f);}
+    public BigInteger getN() {return(z);}
+    public BigInteger getE() {return(n);}
+    public BigInteger getD() {return(d);}
     
     
     
