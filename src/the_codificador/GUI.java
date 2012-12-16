@@ -18,7 +18,7 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    MillerRabin objM;
+    RSA objR;
     BigInteger[] textoCifrado;
     int tamPrimo = Integer.parseInt("1024");
     RSA rsa = new RSA(tamPrimo);
@@ -257,10 +257,10 @@ public class GUI extends javax.swing.JFrame {
     private void verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarActionPerformed
         // TODO add your handling code here:
         String msj = "";
-        objM = new MillerRabin();
+        objR = new RSA();
         long num = Long.parseLong(verNum.getText());
 
-        if (objM.miller_rabin(num)) {
+        if (objR.miller_rabin(num)) {
             mensaje.setText("El numero " + num + " es un numero Primo");
         } else {
             mensaje.setText("El numero " + num + " es un numero Compuesto");
@@ -272,9 +272,9 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String num1, num2;
         long num = 0;
-        objM = new MillerRabin();
-        num1 = String.valueOf(objM.gen_Primo());
-        num2 = String.valueOf(objM.gen_Primo());
+        objR = new RSA();
+        num1 = String.valueOf(objR.gen_Primo());
+        num2 = String.valueOf(objR.gen_Primo());
         prime_1.setText(num1);
         prime_2.setText(num2);
     }//GEN-LAST:event_jButton1ActionPerformed
