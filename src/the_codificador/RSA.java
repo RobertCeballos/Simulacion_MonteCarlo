@@ -32,6 +32,10 @@ public class RSA {
         generaClaves();             //Genera n y d
     }
     
+    public RSA(){
+        
+    }
+    
     public void generaPrimos()
     {
         p = new BigInteger(String.valueOf(gen_Primo()));
